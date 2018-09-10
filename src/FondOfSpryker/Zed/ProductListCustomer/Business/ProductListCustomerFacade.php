@@ -36,11 +36,10 @@ class ProductListCustomerFacade extends AbstractFacade implements ProductListCus
             ->saveProductListCustomerRelation($productListCustomerRelationTransfer);
     }
 
-
     /**
      * @param \Generated\Shared\Transfer\ProductListTransfer $productListTransfer
      *
-     * @return \Generated\Shared\Transfer\ProductListTransfer
+     * @return void
      */
     public function deleteProductListCustomerRelation(
         ProductListTransfer $productListTransfer

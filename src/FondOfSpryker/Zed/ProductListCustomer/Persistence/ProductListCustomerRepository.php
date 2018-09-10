@@ -5,7 +5,6 @@ namespace FondOfSpryker\Zed\ProductListCustomer\Persistence;
 use Generated\Shared\Transfer\ProductListCollectionTransfer;
 use Generated\Shared\Transfer\ProductListTransfer;
 use Orm\Zed\ProductList\Persistence\Map\SpyProductListCustomerTableMap;
-use Orm\Zed\ProductList\Persistence\SpyProductListCustomerQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
