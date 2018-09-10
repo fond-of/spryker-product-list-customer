@@ -2,8 +2,8 @@
 
 namespace FondOfSpryker\Zed\ProductListCustomer\Business\Model;
 
-use Generated\Shared\Transfer\ProductListCustomerRelationTransfer;
 use FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerRepositoryInterface;
+use Generated\Shared\Transfer\ProductListCustomerRelationTransfer;
 
 class ProductListCustomerRelationReader implements ProductListCustomerRelationReaderInterface
 {

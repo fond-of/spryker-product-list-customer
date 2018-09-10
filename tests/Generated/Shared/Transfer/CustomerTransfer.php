@@ -6,7 +6,6 @@
 
 namespace Generated\Shared\Transfer;
 
-use ArrayObject;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 
 /**
@@ -50,7 +49,7 @@ class CustomerTransfer extends AbstractTransfer
      *
      * @return $this
      */
-    public function setProductListCollection(CustomerProductListCollectionTransfer $productListCollection = null)
+    public function setProductListCollection(?CustomerProductListCollectionTransfer $productListCollection = null)
     {
         $this->productListCollection = $productListCollection;
         $this->modifiedProperties[self::PRODUCT_LIST_COLLECTION] = true;

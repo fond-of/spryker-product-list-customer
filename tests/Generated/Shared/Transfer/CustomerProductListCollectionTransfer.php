@@ -65,7 +65,7 @@ class CustomerProductListCollectionTransfer extends AbstractTransfer
      *
      * @return $this
      */
-    public function setBlacklistIds(array $blacklistIds = null)
+    public function setBlacklistIds(?array $blacklistIds = null)
     {
         if ($blacklistIds === null) {
             $blacklistIds = [];
@@ -121,7 +121,7 @@ class CustomerProductListCollectionTransfer extends AbstractTransfer
      *
      * @return $this
      */
-    public function setWhitelistIds(array $whitelistIds = null)
+    public function setWhitelistIds(?array $whitelistIds = null)
     {
         if ($whitelistIds === null) {
             $whitelistIds = [];
