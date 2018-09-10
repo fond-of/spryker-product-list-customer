@@ -46,7 +46,7 @@ class ProductListCustomerTransferExpanderTest extends Unit
     /**
      * @return void
      */
-    public function test(): void
+    public function testExpandTransfer(): void
     {
         $this->productListCustomerFacade->expects($this->atLeastOnce())
             ->method('expandCustomerTransferWithProductListIds')

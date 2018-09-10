@@ -3,6 +3,9 @@
 namespace FondOfSpryker\Zed\ProductListCustomer\Persistence;
 
 use Generated\Shared\Transfer\ProductListCollectionTransfer;
+use Generated\Shared\Transfer\ProductListTransfer;
+use Orm\Zed\ProductList\Persistence\Map\SpyProductListCustomerTableMap;
+use Orm\Zed\ProductList\Persistence\SpyProductListCustomerQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 
 /**
@@ -35,5 +38,22 @@ class ProductListCustomerRepository extends AbstractRepository implements Produc
         }
 
         return $productListCollectionTransfer;
+    }
+
+    /**
+     * @param int $idProductList
+     *
+     * @return int[]
+     */
+    public function getRelatedCustomerIdsByIdProductList(int $idProductList): array
+    {
+        /** @var \Orm\Zed\ProductList\Persistence\SpyProductListCustomerQuery $productListCustomerQuery */
+        $productListCustomerQuery = $this->getFactory()
+            ->createProductListCustomerQuery()
+            ->select(SpyProductListCustomerTableMap::COL_FK_CUSTOMER);
+
+        return $productListCustomerQuery
+            ->findByFkProductList($idProductList)
+            ->toArray();
     }
 }

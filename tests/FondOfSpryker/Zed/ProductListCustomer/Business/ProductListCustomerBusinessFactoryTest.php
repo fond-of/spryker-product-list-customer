@@ -4,7 +4,10 @@ namespace FondOfSpryker\Zed\ProductListCustomer\Business;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\CustomerExpanderInterface;
+use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListCustomerRelationReader;
+use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListCustomerRelationWriter;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListReaderInterface;
+use FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerEntityManager;
 use FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerRepository;
 
 class ProductListCustomerBusinessFactoryTest extends Unit
@@ -15,9 +18,14 @@ class ProductListCustomerBusinessFactoryTest extends Unit
     protected $productListCustomerBusinessFactory;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerRepository
+     * @var \FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerRepository|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $repositoryMock;
+
+    /**
+     * @var \FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerEntityManager|\PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $entityManagerMock;
 
     /**
      * @return void
@@ -30,9 +38,14 @@ class ProductListCustomerBusinessFactoryTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
+        $this->entityManagerMock = $this->getMockBuilder(ProductListCustomerEntityManager::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->productListCustomerBusinessFactory = new ProductListCustomerBusinessFactory();
 
         $this->productListCustomerBusinessFactory->setRepository($this->repositoryMock);
+        $this->productListCustomerBusinessFactory->setEntityManager($this->entityManagerMock);
     }
 
     /**
@@ -51,5 +64,25 @@ class ProductListCustomerBusinessFactoryTest extends Unit
     {
         $customerExpander = $this->productListCustomerBusinessFactory->createCustomerExpander();
         $this->assertInstanceOf(CustomerExpanderInterface::class, $customerExpander);
+    }
+
+    /**
+     * @return void
+     */
+    public function testCreateProductListCustomerRelationWriter(): void
+    {
+        $productListCustomerRelationWriter = $this->productListCustomerBusinessFactory
+            ->createProductListCustomerRelationWriter();
+        $this->assertInstanceOf(ProductListCustomerRelationWriter::class, $productListCustomerRelationWriter);
+    }
+
+    /**
+     * @return void
+     */
+    public function testCreateProductListCustomerRelationReader(): void
+    {
+        $productListCustomerRelationReader = $this->productListCustomerBusinessFactory
+            ->createProductListCustomerRelationReader();
+        $this->assertInstanceOf(ProductListCustomerRelationReader::class, $productListCustomerRelationReader);
     }
 }

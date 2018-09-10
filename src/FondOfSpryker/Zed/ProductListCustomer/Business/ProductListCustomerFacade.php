@@ -3,6 +3,8 @@
 namespace FondOfSpryker\Zed\ProductListCustomer\Business;
 
 use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\ProductListCustomerRelationTransfer;
+use Generated\Shared\Transfer\ProductListTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -20,5 +22,30 @@ class ProductListCustomerFacade extends AbstractFacade implements ProductListCus
         return $this->getFactory()
             ->createCustomerExpander()
             ->expandCustomerTransferWithProductListIds($customerTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\ProductListCustomerRelationTransfer $productListCustomerRelationTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductListCustomerRelationTransfer
+     */
+    public function saveProductListCustomerRelation(
+        ProductListCustomerRelationTransfer $productListCustomerRelationTransfer
+    ): ProductListCustomerRelationTransfer {
+        return $this->getFactory()->createProductListCustomerRelationWriter()
+            ->saveProductListCustomerRelation($productListCustomerRelationTransfer);
+    }
+
+
+    /**
+     * @param \Generated\Shared\Transfer\ProductListTransfer $productListTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductListTransfer
+     */
+    public function deleteProductListCustomerRelation(
+        ProductListTransfer $productListTransfer
+    ): void {
+        $this->getFactory()->createProductListCustomerRelationWriter()
+            ->deleteProductListCustomerRelation($productListTransfer);
     }
 }

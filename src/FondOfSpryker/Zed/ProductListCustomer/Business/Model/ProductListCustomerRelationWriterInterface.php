@@ -1,20 +1,12 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCustomer\Business;
+namespace FondOfSpryker\Zed\ProductListCustomer\Business\Model;
 
-use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\ProductListCustomerRelationTransfer;
 use Generated\Shared\Transfer\ProductListTransfer;
 
-interface ProductListCustomerFacadeInterface
+interface ProductListCustomerRelationWriterInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
-     *
-     * @return \Generated\Shared\Transfer\CustomerTransfer
-     */
-    public function expandCustomerTransferWithProductListIds(CustomerTransfer $customerTransfer): CustomerTransfer;
-
     /**
      * @param \Generated\Shared\Transfer\ProductListCustomerRelationTransfer $productListCustomerRelationTransfer
      *
@@ -27,9 +19,7 @@ interface ProductListCustomerFacadeInterface
     /**
      * @param \Generated\Shared\Transfer\ProductListTransfer $productListTransfer
      *
-     * @return \Generated\Shared\Transfer\ProductListTransfer
+     * @return void
      */
-    public function deleteProductListCustomerRelation(
-        ProductListTransfer $productListTransfer
-    ): void;
+    public function deleteProductListCustomerRelation(ProductListTransfer $productListTransfer): void;
 }

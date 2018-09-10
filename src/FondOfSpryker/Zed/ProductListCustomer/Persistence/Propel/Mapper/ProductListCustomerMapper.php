@@ -17,7 +17,7 @@ class ProductListCustomerMapper implements ProductListCustomerMapperInterface
         SpyProductList $spyProductList,
         ProductListTransfer $productListTransfer
     ): ProductListTransfer {
-        $productListTransfer->fromArray($spyProductList->toArray(), true);
+        $productListTransfer = $productListTransfer->fromArray($spyProductList->toArray(), true);
 
         return $productListTransfer;
     }

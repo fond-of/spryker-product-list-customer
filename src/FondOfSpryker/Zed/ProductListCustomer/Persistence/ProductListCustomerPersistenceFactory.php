@@ -5,6 +5,7 @@ namespace FondOfSpryker\Zed\ProductListCustomer\Persistence;
 use FondOfSpryker\Zed\ProductListCustomer\Persistence\Propel\Mapper\ProductListCustomerMapper;
 use FondOfSpryker\Zed\ProductListCustomer\Persistence\Propel\Mapper\ProductListCustomerMapperInterface;
 use FondOfSpryker\Zed\ProductListCustomer\ProductListCustomerDependencyProvider;
+use Orm\Zed\ProductList\Persistence\SpyProductListCustomerQuery;
 use Orm\Zed\ProductList\Persistence\SpyProductListQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 
@@ -19,6 +20,14 @@ class ProductListCustomerPersistenceFactory extends AbstractPersistenceFactory
     public function getProductListQuery(): SpyProductListQuery
     {
         return $this->getProvidedDependency(ProductListCustomerDependencyProvider::PROPEL_QUERY_PRODUCT_LIST);
+    }
+
+    /**
+     * @return \Orm\Zed\ProductList\Persistence\SpyProductListCustomerQuery
+     */
+    public function createProductListCustomerQuery(): SpyProductListCustomerQuery
+    {
+        return SpyProductListCustomerQuery::create();
     }
 
     /**

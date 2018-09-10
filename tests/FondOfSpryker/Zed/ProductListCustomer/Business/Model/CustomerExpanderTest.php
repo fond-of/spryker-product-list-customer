@@ -41,9 +41,7 @@ class CustomerExpanderTest extends Unit
 
         $this->customerTransfer = new CustomerTransfer();
 
-        $this->productListReaderMock = $this->getMockBuilder(ProductListReaderInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->productListReaderMock = $this->getMockForAbstractClass(ProductListReaderInterface::class);
 
         $this->productListsMock = [
             $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
@@ -67,7 +65,7 @@ class CustomerExpanderTest extends Unit
     /**
      * @return void
      */
-    public function test(): void
+    public function testExpandCustomerTransferWithProductListIds(): void
     {
         $this->productListReaderMock->expects($this->atLeastOnce())
             ->method('getProductListCollectionByIdCustomerId')
