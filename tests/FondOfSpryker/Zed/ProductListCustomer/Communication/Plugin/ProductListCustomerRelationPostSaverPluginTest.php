@@ -36,10 +36,12 @@ class ProductListCustomerRelationPostSaverPluginTest extends Unit
 
         $this->productListTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
             ->disableOriginalConstructor()
+            ->setMethods(['getProductListCustomerRelation', 'getIdProductList', 'setProductListCustomerRelation'])
             ->getMock();
 
         $this->productListCustomerRelationTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCustomerRelationTransfer')
             ->disableOriginalConstructor()
+            ->setMethods(['setIdProductList'])
             ->getMock();
 
         $this->productListCustomerFacadeMock = $this->getMockBuilder(ProductListCustomerFacade::class)

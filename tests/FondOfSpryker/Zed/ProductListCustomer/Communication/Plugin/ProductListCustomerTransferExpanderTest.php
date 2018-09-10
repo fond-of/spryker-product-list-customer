@@ -4,7 +4,6 @@ namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerFacade;
-use Generated\Shared\Transfer\CustomerTransfer;
 
 class ProductListCustomerTransferExpanderTest extends Unit
 {
@@ -30,7 +29,7 @@ class ProductListCustomerTransferExpanderTest extends Unit
     {
         parent::_before();
 
-        $this->customerTransferMock = $this->getMockBuilder(CustomerTransfer::class)
+        $this->customerTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\CustomerTransfer')
             ->disableOriginalConstructor()
             ->getMock();
 

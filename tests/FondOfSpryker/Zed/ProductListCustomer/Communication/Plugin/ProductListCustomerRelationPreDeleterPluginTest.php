@@ -23,6 +23,11 @@ class ProductListCustomerRelationPreDeleterPluginTest extends Unit
     protected $productListTransferMock;
 
     /**
+     * @var '\Generated\Shared\Transfer\ProductListCustomerRelationTransfer'|\PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $productListCustomerRelationTransferMock;
+
+    /**
      * @return void
      */
     protected function _before(): void
