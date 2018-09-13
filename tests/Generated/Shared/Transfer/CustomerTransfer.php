@@ -14,45 +14,46 @@ use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
  */
 class CustomerTransfer extends AbstractTransfer
 {
-    const PRODUCT_LIST_COLLECTION = 'productListCollection';
+    public const CUSTOMER_PRODUCT_LIST_COLLECTION = 'customerProductListCollection';
 
     /**
      * @var \Generated\Shared\Transfer\CustomerProductListCollectionTransfer|null
      */
-    protected $productListCollection;
+    protected $customerProductListCollection;
 
     /**
      * @var array
      */
     protected $transferPropertyNameMap = [
-        'product_list_collection' => 'productListCollection',
-        'productListCollection' => 'productListCollection',
-        'ProductListCollection' => 'productListCollection',
+        'customer_product_list_collection' => 'customerProductListCollection',
+        'customerProductListCollection' => 'customerProductListCollection',
+        'CustomerProductListCollection' => 'customerProductListCollection',
     ];
 
     /**
      * @var array
      */
     protected $transferMetadata = [
-        self::PRODUCT_LIST_COLLECTION => [
+        self::CUSTOMER_PRODUCT_LIST_COLLECTION => [
             'type' => 'Generated\Shared\Transfer\CustomerProductListCollectionTransfer',
-            'name_underscore' => 'product_list_collection',
+            'name_underscore' => 'customer_product_list_collection',
             'is_collection' => false,
             'is_transfer' => true,
         ],
     ];
 
+
     /**
      * @module ProductList
      *
-     * @param \Generated\Shared\Transfer\CustomerProductListCollectionTransfer|null $productListCollection
+     * @param \Generated\Shared\Transfer\CustomerProductListCollectionTransfer|null $customerProductListCollection
      *
      * @return $this
      */
-    public function setProductListCollection(?CustomerProductListCollectionTransfer $productListCollection = null)
+    public function setCustomerProductListCollection(?CustomerProductListCollectionTransfer $customerProductListCollection = null)
     {
-        $this->productListCollection = $productListCollection;
-        $this->modifiedProperties[self::PRODUCT_LIST_COLLECTION] = true;
+        $this->customerProductListCollection = $customerProductListCollection;
+        $this->modifiedProperties[self::CUSTOMER_PRODUCT_LIST_COLLECTION] = true;
 
         return $this;
     }
@@ -62,9 +63,9 @@ class CustomerTransfer extends AbstractTransfer
      *
      * @return \Generated\Shared\Transfer\CustomerProductListCollectionTransfer|null
      */
-    public function getProductListCollection()
+    public function getCustomerProductListCollection(): ?CustomerProductListCollectionTransfer
     {
-        return $this->productListCollection;
+        return $this->customerProductListCollection;
     }
 
     /**
@@ -72,9 +73,9 @@ class CustomerTransfer extends AbstractTransfer
      *
      * @return $this
      */
-    public function requireProductListCollection()
+    public function requireCustomerProductListCollection(): self
     {
-        $this->assertPropertyIsSet(self::PRODUCT_LIST_COLLECTION);
+        $this->assertPropertyIsSet(self::CUSTOMER_PRODUCT_LIST_COLLECTION);
 
         return $this;
     }

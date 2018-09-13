@@ -17,7 +17,7 @@
     </transfer>
 
     <transfer name="Customer">
-        <property name="productListCollection" type="CustomerProductListCollection"/>
+        <property name="customerProductListCollection" type="CustomerProductListCollection"/>
     </transfer>
 
     <transfer name="CustomerProductListCollection">

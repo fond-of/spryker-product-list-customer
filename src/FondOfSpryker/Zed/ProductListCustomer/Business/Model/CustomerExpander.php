@@ -30,7 +30,7 @@ class CustomerExpander implements CustomerExpanderInterface
      */
     public function expandCustomerTransferWithProductListIds(CustomerTransfer $customerTransfer): CustomerTransfer
     {
-        $customerTransfer->setProductListCollection(new CustomerProductListCollectionTransfer());
+        $customerTransfer->setCustomerProductListCollection(new CustomerProductListCollectionTransfer());
 
         $productListCollectionTransfer = $this->productListReader->getProductListCollectionByIdCustomerId(
             $customerTransfer
@@ -55,12 +55,12 @@ class CustomerExpander implements CustomerExpanderInterface
             $idProductList = $productListTransfer->getIdProductList();
 
             if ($productListTransfer->getType() === static::TYPE_WHITELIST) {
-                $customerTransfer->getProductListCollection()->addWhitelistId($idProductList);
+                $customerTransfer->getCustomerProductListCollection()->addWhitelistId($idProductList);
 
                 continue;
             }
 
-            $customerTransfer->getProductListCollection()->addBlacklistId($idProductList);
+            $customerTransfer->getCustomerProductListCollection()->addBlacklistId($idProductList);
         }
     }
 }
