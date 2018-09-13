@@ -5,12 +5,12 @@ namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin;
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerFacade;
 
-class ProductListCustomerTransferExpanderTest extends Unit
+class ProductListCustomerTransferExpanderPluginTest extends Unit
 {
     /**
-     * @var \FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\ProductListCustomerTransferExpander
+     * @var \FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\ProductListCustomerTransferExpanderPlugin
      */
-    protected $productListCustomerTransferExpander;
+    protected $productListCustomerTransferExpanderPlugin;
 
     /**
      * @var \Generated\Shared\Transfer\CustomerTransfer|\PHPUnit\Framework\MockObject\MockObject
@@ -37,9 +37,9 @@ class ProductListCustomerTransferExpanderTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->productListCustomerTransferExpander = new ProductListCustomerTransferExpander();
+        $this->productListCustomerTransferExpanderPlugin = new ProductListCustomerTransferExpanderPlugin();
 
-        $this->productListCustomerTransferExpander->setFacade($this->productListCustomerFacade);
+        $this->productListCustomerTransferExpanderPlugin->setFacade($this->productListCustomerFacade);
     }
 
     /**
@@ -52,7 +52,7 @@ class ProductListCustomerTransferExpanderTest extends Unit
             ->with($this->customerTransferMock)
             ->willReturn($this->customerTransferMock);
 
-        $customerTransfer = $this->productListCustomerTransferExpander->expandTransfer($this->customerTransferMock);
+        $customerTransfer = $this->productListCustomerTransferExpanderPlugin->expandTransfer($this->customerTransferMock);
 
         $this->assertEquals($this->customerTransferMock, $customerTransfer);
     }
