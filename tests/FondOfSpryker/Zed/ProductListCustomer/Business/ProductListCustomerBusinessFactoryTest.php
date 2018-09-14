@@ -7,6 +7,7 @@ use FondOfSpryker\Zed\ProductListCustomer\Business\Model\CustomerExpanderInterfa
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListCustomerRelationReader;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListCustomerRelationWriter;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListReaderInterface;
+use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListTransferExpander;
 use FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerEntityManager;
 use FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerRepository;
 
@@ -61,6 +62,15 @@ class ProductListCustomerBusinessFactoryTest extends Unit
      * @return void
      */
     public function testCreateCustomerExpander(): void
+    {
+        $productListTransferExpander = $this->productListCustomerBusinessFactory->createProductListTransferExpander();
+        $this->assertInstanceOf(ProductListTransferExpander::class, $productListTransferExpander);
+    }
+
+    /**
+     * @return void
+     */
+    public function testCreateProductListTransferExpander(): void
     {
         $customerExpander = $this->productListCustomerBusinessFactory->createCustomerExpander();
         $this->assertInstanceOf(CustomerExpanderInterface::class, $customerExpander);

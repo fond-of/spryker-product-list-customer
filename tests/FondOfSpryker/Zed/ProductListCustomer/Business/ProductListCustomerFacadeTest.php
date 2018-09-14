@@ -5,6 +5,7 @@ namespace FondOfSpryker\Zed\ProductListCustomer\Business;
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\CustomerExpander;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListCustomerRelationWriter;
+use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListTransferExpander;
 
 class ProductListCustomerFacadeTest extends Unit
 {
@@ -44,6 +45,11 @@ class ProductListCustomerFacadeTest extends Unit
     protected $productListCustomerRelationTransferMock;
 
     /**
+     * @var \FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListTransferExpanderInterface|\PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $productListTransferExpander;
+
+    /**
      * @return void
      */
     protected function _before(): void
@@ -67,6 +73,10 @@ class ProductListCustomerFacadeTest extends Unit
             ->getMock();
 
         $this->customerExpanderMock = $this->getMockBuilder(CustomerExpander::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->productListTransferExpander = $this->getMockBuilder(ProductListTransferExpander::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -130,5 +140,25 @@ class ProductListCustomerFacadeTest extends Unit
             ->with($this->productListTransferMock);
 
         $this->productListCustomerFacade->deleteProductListCustomerRelation($this->productListTransferMock);
+    }
+
+    /**
+     * @return void
+     */
+    public function testExpandProductListTransferWithProductListCustomerRelationTransfer(): void
+    {
+        $this->productListCustomerBusinessFactoryMock->expects($this->atLeastOnce())
+            ->method('createProductListTransferExpander')
+            ->willReturn($this->productListTransferExpander);
+
+        $this->productListTransferExpander->expects($this->atLeastOnce())
+            ->method('expandWithProductListCustomerRelationTransfer')
+            ->with($this->productListTransferMock)
+            ->willReturn($this->productListTransferMock);
+
+        $actualProductList = $this->productListCustomerFacade
+            ->expandProductListTransferWithProductListCustomerRelationTransfer($this->productListTransferMock);
+
+        $this->assertEquals($actualProductList, $this->productListTransferMock);
     }
 }

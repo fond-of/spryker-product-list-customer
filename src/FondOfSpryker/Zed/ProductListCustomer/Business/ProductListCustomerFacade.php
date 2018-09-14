@@ -47,4 +47,17 @@ class ProductListCustomerFacade extends AbstractFacade implements ProductListCus
         $this->getFactory()->createProductListCustomerRelationWriter()
             ->deleteProductListCustomerRelation($productListTransfer);
     }
+
+    /**
+     * @param \Generated\Shared\Transfer\ProductListTransfer $productListTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductListTransfer
+     */
+    public function expandProductListTransferWithProductListCustomerRelationTransfer(
+        ProductListTransfer $productListTransfer
+    ): ProductListTransfer {
+        return $this->getFactory()
+            ->createProductListTransferExpander()
+            ->expandWithProductListCustomerRelationTransfer($productListTransfer);
+    }
 }
