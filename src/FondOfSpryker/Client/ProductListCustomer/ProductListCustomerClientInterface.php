@@ -1,11 +1,11 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCustomer\Business\Model;
+namespace FondOfSpryker\Client\ProductListCustomer;
 
 use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\ProductListCollectionTransfer;
 
-interface ProductListReaderInterface
+interface ProductListCustomerClientInterface
 {
     /**
      * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer

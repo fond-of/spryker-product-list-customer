@@ -32,7 +32,7 @@ class CustomerExpander implements CustomerExpanderInterface
     {
         $customerTransfer->setCustomerProductListCollection(new CustomerProductListCollectionTransfer());
 
-        $productListCollectionTransfer = $this->productListReader->getProductListCollectionByIdCustomerId(
+        $productListCollectionTransfer = $this->productListReader->getProductListCollectionByCustomerId(
             $customerTransfer
         );
 

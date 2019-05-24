@@ -3,12 +3,15 @@
 namespace FondOfSpryker\Zed\ProductListCustomer\Business;
 
 use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\ProductListCollectionTransfer;
 use Generated\Shared\Transfer\ProductListCustomerRelationTransfer;
 use Generated\Shared\Transfer\ProductListTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
  * @method \FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerBusinessFactory getFactory()
+ * @method \FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerEntityManagerInterface getEntityManager()
+ * @method \FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerRepositoryInterface getRepository()
  */
 class ProductListCustomerFacade extends AbstractFacade implements ProductListCustomerFacadeInterface
 {
@@ -22,6 +25,16 @@ class ProductListCustomerFacade extends AbstractFacade implements ProductListCus
         return $this->getFactory()
             ->createCustomerExpander()
             ->expandCustomerTransferWithProductListIds($customerTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductListCollectionTransfer
+     */
+    public function getProductListCollectionByCustomerId(CustomerTransfer $customerTransfer): ProductListCollectionTransfer
+    {
+        return $this->getFactory()->createProductListReader()->getProductListCollectionByCustomerId($customerTransfer);
     }
 
     /**

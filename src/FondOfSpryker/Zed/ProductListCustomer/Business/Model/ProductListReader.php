@@ -26,7 +26,7 @@ class ProductListReader implements ProductListReaderInterface
      *
      * @return \Generated\Shared\Transfer\ProductListCollectionTransfer
      */
-    public function getProductListCollectionByIdCustomerId(
+    public function getProductListCollectionByCustomerId(
         CustomerTransfer $customerTransfer
     ): ProductListCollectionTransfer {
         $customerTransfer->requireIdCustomer();

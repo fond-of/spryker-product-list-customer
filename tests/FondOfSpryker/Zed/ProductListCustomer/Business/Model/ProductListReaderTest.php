@@ -63,7 +63,7 @@ class ProductListReaderTest extends Unit
             ->with(1)
             ->willReturn($this->productListCollectionTransferMock);
 
-        $productListCollectionTransfer = $this->productListReader->getProductListCollectionByIdCustomerId($this->customerTransferMock);
+        $productListCollectionTransfer = $this->productListReader->getProductListCollectionByCustomerId($this->customerTransferMock);
 
         $this->assertEquals($this->productListCollectionTransferMock, $productListCollectionTransfer);
     }
