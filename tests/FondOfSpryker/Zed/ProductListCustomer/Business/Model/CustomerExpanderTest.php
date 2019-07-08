@@ -4,6 +4,8 @@ namespace FondOfSpryker\Zed\ProductListCustomer\Business\Model;
 
 use Codeception\Test\Unit;
 use Generated\Shared\Transfer\CustomerTransfer;
+use Generated\Shared\Transfer\ProductListCollectionTransfer;
+use Generated\Shared\Transfer\ProductListTransfer;
 
 class CustomerExpanderTest extends Unit
 {
@@ -41,22 +43,21 @@ class CustomerExpanderTest extends Unit
 
         $this->customerTransfer = new CustomerTransfer();
 
-        $this->productListReaderMock = $this->getMockForAbstractClass(ProductListReaderInterface::class);
+        $this->productListReaderMock = $this->getMockBuilder(ProductListReaderInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->productListsMock = [
-            $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
+            $this->getMockBuilder(ProductListTransfer::class)
                 ->disableOriginalConstructor()
-                ->setMethods(['getType', 'getIdProductList'])
                 ->getMock(),
-            $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
+            $this->getMockBuilder(ProductListTransfer::class)
                 ->disableOriginalConstructor()
-                ->setMethods(['getType', 'getIdProductList'])
                 ->getMock(),
         ];
 
-        $this->productListCollectionTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCollectionTransfer')
+        $this->productListCollectionTransferMock = $this->getMockBuilder(ProductListCollectionTransfer::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getProductLists'])
             ->getMock();
 
         $this->customerExpander = new CustomerExpander($this->productListReaderMock);
@@ -68,7 +69,7 @@ class CustomerExpanderTest extends Unit
     public function testExpandCustomerTransferWithProductListIds(): void
     {
         $this->productListReaderMock->expects($this->atLeastOnce())
-            ->method('getProductListCollectionByIdCustomerId')
+            ->method('getProductListCollectionByCustomerId')
             ->with($this->customerTransfer)
             ->willReturn($this->productListCollectionTransferMock);
 
