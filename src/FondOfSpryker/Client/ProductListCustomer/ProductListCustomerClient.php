@@ -22,4 +22,16 @@ class ProductListCustomerClient extends AbstractClient implements ProductListCus
             ->createZedProductListCustomerStub()
             ->getProductListCollectionByCustomerId($customerTransfer);
     }
+
+    /**
+     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
+     *
+     * @return \Generated\Shared\Transfer\CustomerTransfer
+     */
+    public function expandCustomerWithProductListIds(CustomerTransfer $customerTransfer): CustomerTransfer
+    {
+        return $this->getFactory()
+            ->createZedProductListCustomerStub()
+            ->expandCustomerWithProductListIds($customerTransfer);
+    }
 }

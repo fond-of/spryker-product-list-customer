@@ -26,13 +26,29 @@ class ProductListCustomerStub implements ProductListCustomerStubInterface
      *
      * @return \Generated\Shared\Transfer\ProductListCollectionTransfer
      */
-    public function getProductListCollectionByCustomerId(CustomerTransfer $customerTransfer): ProductListCollectionTransfer
-    {
+    public function getProductListCollectionByCustomerId(
+        CustomerTransfer $customerTransfer
+    ): ProductListCollectionTransfer {
         $url = '/product-list-customer/gateway/get-product-list-collection-by-customer-id';
 
         /** @var \Generated\Shared\Transfer\ProductListCollectionTransfer $productListCollectionTransfer */
         $productListCollectionTransfer = $this->zedRequestClient->call($url, $customerTransfer);
 
         return $productListCollectionTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
+     *
+     * @return \Generated\Shared\Transfer\CustomerTransfer
+     */
+    public function expandCustomerWithProductListIds(CustomerTransfer $customerTransfer): CustomerTransfer
+    {
+        $url = '/product-list-customer/gateway/expand-customer-with-product-list-ids';
+
+        /** @var \Generated\Shared\Transfer\CustomerTransfer $customerTransfer */
+        $customerTransfer = $this->zedRequestClient->call($url, $customerTransfer);
+
+        return $customerTransfer;
     }
 }

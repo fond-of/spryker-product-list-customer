@@ -20,4 +20,14 @@ class GatewayController extends AbstractGatewayController
     {
         return $this->getFacade()->getProductListCollectionByCustomerId($customerTransfer);
     }
+
+    /**
+     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
+     *
+     * @return \Generated\Shared\Transfer\CustomerTransfer
+     */
+    public function expandCustomerWithProductListIdsAction(CustomerTransfer $customerTransfer): CustomerTransfer
+    {
+        return $this->getFacade()->expandCustomerTransferWithProductListIds($customerTransfer);
+    }
 }

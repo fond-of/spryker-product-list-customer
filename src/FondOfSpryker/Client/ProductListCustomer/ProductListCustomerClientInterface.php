@@ -13,4 +13,11 @@ interface ProductListCustomerClientInterface
      * @return \Generated\Shared\Transfer\ProductListCollectionTransfer
      */
     public function getProductListCollectionByCustomerId(CustomerTransfer $customerTransfer): ProductListCollectionTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\CustomerTransfer $customerTransfer
+     *
+     * @return \Generated\Shared\Transfer\CustomerTransfer
+     */
+    public function expandCustomerWithProductListIds(CustomerTransfer $customerTransfer): CustomerTransfer;
 }
