@@ -8,11 +8,12 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
  * @method \FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerFacadeInterface getFacade()
+ * @method \FondOfSpryker\Zed\ProductListCustomer\ProductListCustomerConfig getConfig()
  */
 class ProductListCustomerTransferExpanderPlugin extends AbstractPlugin implements CustomerTransferExpanderPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
@@ -22,6 +23,9 @@ class ProductListCustomerTransferExpanderPlugin extends AbstractPlugin implement
      */
     public function expandTransfer(CustomerTransfer $customerTransfer): CustomerTransfer
     {
-        return $this->getFacade()->expandCustomerTransferWithProductListIds($customerTransfer);
+        $customerTransfer = $this->getFacade()
+            ->expandCustomerTransferWithProductListIds($customerTransfer);
+
+        return $customerTransfer;
     }
 }

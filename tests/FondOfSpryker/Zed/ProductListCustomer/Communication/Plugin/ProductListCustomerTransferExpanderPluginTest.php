@@ -13,9 +13,9 @@ class ProductListCustomerTransferExpanderPluginTest extends Unit
     protected $productListCustomerTransferExpanderPlugin;
 
     /**
-     * @var \Generated\Shared\Transfer\CustomerTransfer|\PHPUnit\Framework\MockObject\MockObject
+     * @var \Generated\Shared\Transfer\ProductListTransfer
      */
-    protected $customerTransferMock;
+    protected $productListTransferMock;
 
     /**
      * @var \FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerFacade|\PHPUnit\Framework\MockObject\MockObject
@@ -29,7 +29,7 @@ class ProductListCustomerTransferExpanderPluginTest extends Unit
     {
         parent::_before();
 
-        $this->customerTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\CustomerTransfer')
+        $this->productListTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -48,12 +48,12 @@ class ProductListCustomerTransferExpanderPluginTest extends Unit
     public function testExpandTransfer(): void
     {
         $this->productListCustomerFacade->expects($this->atLeastOnce())
-            ->method('expandCustomerTransferWithProductListIds')
-            ->with($this->customerTransferMock)
-            ->willReturn($this->customerTransferMock);
+            ->method('expandProductListTransferWithProductListCustomerRelationTransfer')
+            ->with($this->productListTransferMock)
+            ->willReturn($this->productListTransferMock);
 
-        $customerTransfer = $this->productListCustomerTransferExpanderPlugin->expandTransfer($this->customerTransferMock);
+        $customerTransfer = $this->productListCustomerTransferExpanderPlugin->expandTransfer($this->productListTransferMock);
 
-        $this->assertEquals($this->customerTransferMock, $customerTransfer);
+        $this->assertEquals($this->productListTransferMock, $customerTransfer);
     }
 }
