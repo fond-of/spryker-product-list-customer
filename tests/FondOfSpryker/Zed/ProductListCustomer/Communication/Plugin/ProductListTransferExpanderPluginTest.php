@@ -13,7 +13,7 @@ class ProductListTransferExpanderPluginTest extends Unit
     protected $productListTransferMock;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\ProductListTransferExpanderPlugin
+     * @var \FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\CustomerProductListTransferExpanderPlugin
      */
     protected $productListTransferExpanderPlugin;
 
@@ -37,7 +37,7 @@ class ProductListTransferExpanderPluginTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->productListTransferExpanderPlugin = new ProductListTransferExpanderPlugin();
+        $this->productListTransferExpanderPlugin = new CustomerProductListTransferExpanderPlugin();
 
         $this->productListTransferExpanderPlugin->setFacade($this->productListCustomerFacade);
     }
