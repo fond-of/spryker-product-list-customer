@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\ProductList;
 
 use FondOfSpryker\Zed\ProductList\Dependency\Plugin\ProductListPostSaverPluginInterface;
 use Generated\Shared\Transfer\ProductListCustomerRelationTransfer;

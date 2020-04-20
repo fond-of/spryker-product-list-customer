@@ -1,14 +1,16 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\ProductListExtension;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerFacade;
+use Generated\Shared\Transfer\ProductListCustomerRelationTransfer;
+use Generated\Shared\Transfer\ProductListTransfer;
 
-class ProductListCustomerRelationPreDeleterPluginTest extends Unit
+class ProductListCustomerRelationPreDeletePluginTest extends Unit
 {
     /**
-     * @var \FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\ProductListCustomerRelationPreDeleterPlugin
+     * @var \FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\ProductListExtension\ProductListCustomerRelationPreDeletePlugin
      */
     protected $productListCustomerRelationPreDeleterPlugin;
 
@@ -23,7 +25,7 @@ class ProductListCustomerRelationPreDeleterPluginTest extends Unit
     protected $productListTransferMock;
 
     /**
-     * @var '\Generated\Shared\Transfer\ProductListCustomerRelationTransfer'|\PHPUnit\Framework\MockObject\MockObject
+     * @var \Generated\Shared\Transfer\ProductListCustomerRelationTransfer'|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $productListCustomerRelationTransferMock;
 
@@ -34,11 +36,11 @@ class ProductListCustomerRelationPreDeleterPluginTest extends Unit
     {
         parent::_before();
 
-        $this->productListTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
+        $this->productListTransferMock = $this->getMockBuilder(ProductListTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->productListCustomerRelationTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCustomerRelationTransfer')
+        $this->productListCustomerRelationTransferMock = $this->getMockBuilder(ProductListCustomerRelationTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -46,7 +48,7 @@ class ProductListCustomerRelationPreDeleterPluginTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->productListCustomerRelationPreDeleterPlugin = new ProductListCustomerRelationPreDeleterPlugin();
+        $this->productListCustomerRelationPreDeleterPlugin = new ProductListCustomerRelationPreDeletePlugin();
 
         $this->productListCustomerRelationPreDeleterPlugin->setFacade($this->productListCustomerFacadeMock);
     }
@@ -60,6 +62,6 @@ class ProductListCustomerRelationPreDeleterPluginTest extends Unit
             ->method('deleteProductListCustomerRelation')
             ->with($this->productListTransferMock);
 
-        $this->productListCustomerRelationPreDeleterPlugin->preDelete($this->productListTransferMock);
+        $this->productListCustomerRelationPreDeleterPlugin->execute($this->productListTransferMock);
     }
 }

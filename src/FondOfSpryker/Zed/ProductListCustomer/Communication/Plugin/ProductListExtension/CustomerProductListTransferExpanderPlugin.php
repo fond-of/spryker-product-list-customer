@@ -1,19 +1,19 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\ProductListExtension;
 
-use FondOfSpryker\Zed\ProductList\Dependency\Plugin\ProductListTransferExpanderPluginInterface;
+use FondOfSpryker\Zed\ProductListExtension\Dependency\Plugin\ProductListTransferExpanderPluginInterface;
 use Generated\Shared\Transfer\ProductListTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 
 /**
  * @method \FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerFacadeInterface getFacade()
+ * @method \FondOfSpryker\Zed\ProductListCustomer\ProductListCustomerConfig getConfig()
  */
 class CustomerProductListTransferExpanderPlugin extends AbstractPlugin implements ProductListTransferExpanderPluginInterface
 {
     /**
-     * Specification
-     * - Expands the provided product list transfer object's data and returns the modified object.
+     * {@inheritDoc}
      *
      * @api
      *
