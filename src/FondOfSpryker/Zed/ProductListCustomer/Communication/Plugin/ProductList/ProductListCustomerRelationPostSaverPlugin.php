@@ -14,7 +14,7 @@ use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 class ProductListCustomerRelationPostSaverPlugin extends AbstractPlugin implements ProductListPostSaverPluginInterface
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @api
      *
