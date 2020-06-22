@@ -17,6 +17,11 @@ class ProductListCustomerRelationWriter implements ProductListCustomerRelationWr
     protected $productListCustomerEntityManager;
 
     /**
+     * @var \FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface[]
+     */
+    protected $productListCustomerRelationsPostSavePlugins;
+
+    /**
      * @var \FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListCustomerRelationReaderInterface
      */
     protected $productListCustomerRelationReader;
@@ -24,12 +29,15 @@ class ProductListCustomerRelationWriter implements ProductListCustomerRelationWr
     /**
      * @param \FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerEntityManagerInterface $productListCustomerEntityManager
      * @param \FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListCustomerRelationReaderInterface $productListCustomerRelationReader
+     * @param array $productListCustomerRelationsPostSavePlugins
      */
     public function __construct(
         ProductListCustomerEntityManagerInterface $productListCustomerEntityManager,
-        ProductListCustomerRelationReaderInterface $productListCustomerRelationReader
+        ProductListCustomerRelationReaderInterface $productListCustomerRelationReader,
+        array $productListCustomerRelationsPostSavePlugins
     ) {
         $this->productListCustomerEntityManager = $productListCustomerEntityManager;
+        $this->productListCustomerRelationsPostSavePlugins = $productListCustomerRelationsPostSavePlugins;
         $this->productListCustomerRelationReader = $productListCustomerRelationReader;
     }
 
@@ -68,9 +76,12 @@ class ProductListCustomerRelationWriter implements ProductListCustomerRelationWr
         $this->productListCustomerEntityManager->addCustomerRelations($idProductList, $saveCustomerIds);
         $this->productListCustomerEntityManager->removeCustomerRelations($idProductList, $deleteCustomerIds);
 
-        return $productListCustomerRelationTransfer->setCustomerIds(
+        $productListCustomerRelationTransfer->setCustomerIds(
             $this->getRelatedCustomerIds($productListCustomerRelationTransfer)
         );
+        $productListCustomerRelationTransfer = $this->executeProductListCustomerPostSavePlugins($productListCustomerRelationTransfer);
+
+        return $productListCustomerRelationTransfer;
     }
 
     /**
@@ -106,5 +117,21 @@ class ProductListCustomerRelationWriter implements ProductListCustomerRelationWr
     public function deleteProductListCustomerRelation(ProductListTransfer $productListTransfer): void
     {
         $this->productListCustomerEntityManager->deleteProductListCustomerRelations($productListTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\ProductListCustomerRelationTransfer $productListCustomerRelationTransferRelationTransfer
+     *
+     * @return \Generated\Shared\Transfer\ProductListCustomerRelationTransfer
+     */
+    protected function executeProductListCustomerPostSavePlugins(
+        ProductListCustomerRelationTransfer $productListCustomerRelationTransferRelationTransfer
+    ): ProductListCustomerRelationTransfer {
+
+        foreach ($this->productListCustomerRelationsPostSavePlugins as $productListCustomerPostSavePlugin) {
+            $productListCustomerRelationTransfer = $productListCustomerPostSavePlugin->postSave($productListCustomerRelationTransferRelationTransfer);
+        }
+
+        return $productListCustomerRelationTransfer;
     }
 }
