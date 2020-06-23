@@ -66,8 +66,6 @@ class ProductListCustomerDependencyProvider extends AbstractBundleDependencyProv
     }
 
     /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
      * @return \FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface[]
      */
     protected function getProductListCustomerRelationPostSavePlugins(): array
