@@ -44,7 +44,7 @@ class ProductListCustomerDependencyProvider extends AbstractBundleDependencyProv
      */
     protected function addProductListPropelQuery(Container $container): Container
     {
-        $container[static::PROPEL_QUERY_PRODUCT_LIST] = function (Container $container) {
+        $container[static::PROPEL_QUERY_PRODUCT_LIST] = static function () {
             return SpyProductListQuery::create();
         };
 
@@ -66,11 +66,9 @@ class ProductListCustomerDependencyProvider extends AbstractBundleDependencyProv
     }
 
     /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
      * @return \FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface[]
      */
-    protected function getProductListCustomerRelationPostSavePlugins()
+    protected function getProductListCustomerRelationPostSavePlugins(): array
     {
         return [];
     }
