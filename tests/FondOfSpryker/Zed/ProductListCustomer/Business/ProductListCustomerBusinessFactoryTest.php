@@ -17,14 +17,14 @@ use Spryker\Zed\Kernel\Container;
 class ProductListCustomerBusinessFactoryTest extends Unit
 {
     /**
-     * @var \FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerBusinessFactory
-     */
-    protected $productListCustomerBusinessFactory;
-
-    /**
      * @var \Spryker\Zed\Kernel\Container|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $containerMock;
+
+    /**
+     * @var \FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerBusinessFactory
+     */
+    protected $productListCustomerBusinessFactory;
 
     /**
      * @var \FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerRepository|\PHPUnit\Framework\MockObject\MockObject
