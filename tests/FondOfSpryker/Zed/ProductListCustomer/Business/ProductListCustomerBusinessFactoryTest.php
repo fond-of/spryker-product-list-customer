@@ -3,10 +3,10 @@
 namespace FondOfSpryker\Zed\ProductListCustomer\Business;
 
 use Codeception\Test\Unit;
-use FondOfSpryker\Zed\ProductListCustomer\Business\Model\CustomerExpanderInterface;
+use FondOfSpryker\Zed\ProductListCustomer\Business\Model\CustomerExpander;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListCustomerRelationReader;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListCustomerRelationWriter;
-use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListReaderInterface;
+use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListReader;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListTransferExpander;
 use FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerEntityManager;
 use FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerRepository;
@@ -37,7 +37,7 @@ class ProductListCustomerBusinessFactoryTest extends Unit
     protected $entityManagerMock;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface[]|\PHPUnit\Framework\MockObject\MockObject
+     * @var \FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface[]|\PHPUnit\Framework\MockObject\MockObject[]
      */
     protected $productListCustomerPostSavePluginMocks;
 
@@ -68,9 +68,9 @@ class ProductListCustomerBusinessFactoryTest extends Unit
 
         $this->productListCustomerBusinessFactory = new ProductListCustomerBusinessFactory();
 
+        $this->productListCustomerBusinessFactory->setContainer($this->containerMock);
         $this->productListCustomerBusinessFactory->setRepository($this->repositoryMock);
         $this->productListCustomerBusinessFactory->setEntityManager($this->entityManagerMock);
-        $this->productListCustomerBusinessFactory->setContainer($this->containerMock);
     }
 
     /**
@@ -79,7 +79,7 @@ class ProductListCustomerBusinessFactoryTest extends Unit
     public function testCreateProductListReader(): void
     {
         $productListReader = $this->productListCustomerBusinessFactory->createProductListReader();
-        $this->assertInstanceOf(ProductListReaderInterface::class, $productListReader);
+        $this->assertInstanceOf(ProductListReader::class, $productListReader);
     }
 
     /**
@@ -97,7 +97,7 @@ class ProductListCustomerBusinessFactoryTest extends Unit
     public function testCreateProductListTransferExpander(): void
     {
         $customerExpander = $this->productListCustomerBusinessFactory->createCustomerExpander();
-        $this->assertInstanceOf(CustomerExpanderInterface::class, $customerExpander);
+        $this->assertInstanceOf(CustomerExpander::class, $customerExpander);
     }
 
     /**

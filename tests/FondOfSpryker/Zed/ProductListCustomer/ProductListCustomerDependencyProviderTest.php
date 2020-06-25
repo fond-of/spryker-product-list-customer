@@ -2,14 +2,13 @@
 
 namespace FondOfSpryker\Zed\ProductListCustomer;
 
-use Closure;
 use Codeception\Test\Unit;
 use Spryker\Zed\Kernel\Container;
 
 class ProductListCustomerDependencyProviderTest extends Unit
 {
     /**
-     * @var \Spryker\Zed\Kernel\Container|\PHPUnit\Framework\MockObject\MockObject|null
+     * @var \Spryker\Zed\Kernel\Container|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $containerMock;
 
@@ -26,23 +25,21 @@ class ProductListCustomerDependencyProviderTest extends Unit
         parent::_before();
 
         $this->productListCustomerDependencyProvider = new ProductListCustomerDependencyProvider();
+
         $this->containerMock = $this->getMockBuilder(Container::class)
-            ->disableOriginalConstructor()
+            ->setMethodsExcept(['factory', 'set', 'offsetSet', 'get', 'offsetGet'])
             ->getMock();
     }
 
     /**
      * @return void
      */
-    public function testProvidePersistenceLayerDependencies(): void
+    public function testProvideBusinessLayerDependencies(): void
     {
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('offsetSet')
-            ->with(
-                ProductListCustomerDependencyProvider::PROPEL_QUERY_PRODUCT_LIST,
-                $this->isInstanceOf(Closure::class)
-            );
+        $container = $this->productListCustomerDependencyProvider->provideBusinessLayerDependencies($this->containerMock);
 
-        $this->productListCustomerDependencyProvider->providePersistenceLayerDependencies($this->containerMock);
+        $this->assertEquals($this->containerMock, $container);
+        $this->assertIsArray($container[ProductListCustomerDependencyProvider::PLUGINS_PRODUCT_LIST_CUSTOMER_RELATION_POST_SAVE]);
+        $this->assertCount(0, $container[ProductListCustomerDependencyProvider::PLUGINS_PRODUCT_LIST_CUSTOMER_RELATION_POST_SAVE]);
     }
 }

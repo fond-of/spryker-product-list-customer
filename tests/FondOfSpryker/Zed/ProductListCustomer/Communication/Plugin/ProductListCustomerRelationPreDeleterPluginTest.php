@@ -4,6 +4,8 @@ namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerFacade;
+use Generated\Shared\Transfer\ProductListCustomerRelationTransfer;
+use Generated\Shared\Transfer\ProductListTransfer;
 
 class ProductListCustomerRelationPreDeleterPluginTest extends Unit
 {
@@ -34,11 +36,11 @@ class ProductListCustomerRelationPreDeleterPluginTest extends Unit
     {
         parent::_before();
 
-        $this->productListTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
+        $this->productListTransferMock = $this->getMockBuilder(ProductListTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->productListCustomerRelationTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCustomerRelationTransfer')
+        $this->productListCustomerRelationTransferMock = $this->getMockBuilder(ProductListCustomerRelationTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 

@@ -5,6 +5,8 @@ namespace FondOfSpryker\Zed\ProductListCustomer\Business\Model;
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerEntityManagerInterface;
 use FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface;
+use Generated\Shared\Transfer\ProductListCustomerRelationTransfer;
+use Generated\Shared\Transfer\ProductListTransfer;
 use ReflectionClass;
 use ReflectionException;
 
@@ -52,9 +54,13 @@ class ProductListCustomerRelationWriterTest extends Unit
     {
         parent::_before();
 
-        $this->productListCustomerEntityManagerMock = $this->getMockForAbstractClass(ProductListCustomerEntityManagerInterface::class);
+        $this->productListCustomerEntityManagerMock = $this->getMockBuilder(ProductListCustomerEntityManagerInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
-        $this->productListCustomerRelationReaderMock = $this->getMockForAbstractClass(ProductListCustomerRelationReaderInterface::class);
+        $this->productListCustomerRelationReaderMock = $this->getMockBuilder(ProductListCustomerRelationReaderInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->productListCustomerPostSavePluginMocks = [
             $this->getMockBuilder(ProductListCustomerPostSavePluginInterface::class)
@@ -62,18 +68,16 @@ class ProductListCustomerRelationWriterTest extends Unit
                 ->getMock(),
         ];
 
-        $this->productListTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListTransfer')
+        $this->productListTransferMock = $this->getMockBuilder(ProductListTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->productListCustomerRelationTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCustomerRelationTransfer')
+        $this->productListCustomerRelationTransferMock = $this->getMockBuilder(ProductListCustomerRelationTransfer::class)
             ->disableOriginalConstructor()
-            ->setMethods(['requireIdProductList', 'getIdProductList', 'getCustomerIds', 'setCustomerIds'])
             ->getMock();
 
-        $this->currentProductListCustomerRelationTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCustomerRelationTransfer')
+        $this->currentProductListCustomerRelationTransferMock = $this->getMockBuilder(ProductListCustomerRelationTransfer::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getCustomerIds'])
             ->getMock();
 
         $this->productListCustomerRelationWriter = new ProductListCustomerRelationWriter(
@@ -151,7 +155,7 @@ class ProductListCustomerRelationWriterTest extends Unit
             ->willReturn($this->productListCustomerRelationTransferMock);
 
         try {
-            $reflection = new ReflectionClass(get_class($this->productListCustomerRelationWriter));
+            $reflection = new ReflectionClass(\get_class($this->productListCustomerRelationWriter));
 
             $method = $reflection->getMethod('executeSaveProductListCustomerRelationTransaction');
             $method->setAccessible(true);
