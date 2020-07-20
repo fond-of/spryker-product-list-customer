@@ -12,6 +12,7 @@ use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListReader;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListReaderInterface;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListTransferExpander;
 use FondOfSpryker\Zed\ProductListCustomer\Business\Model\ProductListTransferExpanderInterface;
+use FondOfSpryker\Zed\ProductListCustomer\ProductListCustomerDependencyProvider;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
 /**
@@ -52,7 +53,8 @@ class ProductListCustomerBusinessFactory extends AbstractBusinessFactory
     {
         return new ProductListCustomerRelationWriter(
             $this->getEntityManager(),
-            $this->createProductListCustomerRelationReader()
+            $this->createProductListCustomerRelationReader(),
+            $this->getProductListCustomerRelationPostSavePlugins()
         );
     }
 
@@ -62,5 +64,13 @@ class ProductListCustomerBusinessFactory extends AbstractBusinessFactory
     public function createProductListCustomerRelationReader(): ProductListCustomerRelationReaderInterface
     {
         return new ProductListCustomerRelationReader($this->getRepository());
+    }
+
+    /**
+     * @return \FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface[]
+     */
+    public function getProductListCustomerRelationPostSavePlugins(): array
+    {
+        return $this->getProvidedDependency(ProductListCustomerDependencyProvider::PLUGINS_PRODUCT_LIST_CUSTOMER_RELATION_POST_SAVE);
     }
 }

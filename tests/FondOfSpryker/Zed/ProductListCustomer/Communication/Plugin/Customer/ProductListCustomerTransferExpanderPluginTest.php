@@ -14,6 +14,11 @@ class ProductListCustomerTransferExpanderPluginTest extends Unit
     protected $productListCustomerTransferExpanderPlugin;
 
     /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\CustomerTransfer
+     */
+    protected $customerTransferMock;
+
+    /**
      * @var \Generated\Shared\Transfer\ProductListTransfer
      */
     protected $productListTransferMock;

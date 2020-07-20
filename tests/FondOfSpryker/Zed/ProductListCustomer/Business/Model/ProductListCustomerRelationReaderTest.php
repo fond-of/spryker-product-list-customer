@@ -4,6 +4,7 @@ namespace FondOfSpryker\Zed\ProductListCustomer\Business\Model;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCustomer\Persistence\ProductListCustomerRepositoryInterface;
+use Generated\Shared\Transfer\ProductListCustomerRelationTransfer;
 
 class ProductListCustomerRelationReaderTest extends Unit
 {
@@ -29,12 +30,13 @@ class ProductListCustomerRelationReaderTest extends Unit
     {
         parent::_before();
 
-        $this->productListCustomerRelationTransferMock = $this->getMockBuilder('\Generated\Shared\Transfer\ProductListCustomerRelationTransfer')
+        $this->productListCustomerRelationTransferMock = $this->getMockBuilder(ProductListCustomerRelationTransfer::class)
             ->disableOriginalConstructor()
-            ->setMethods(['requireIdProductList', 'getIdProductList', 'setCustomerIds'])
             ->getMock();
 
-        $this->productListCustomerRepositoryMock = $this->getMockForAbstractClass(ProductListCustomerRepositoryInterface::class);
+        $this->productListCustomerRepositoryMock = $this->getMockBuilder(ProductListCustomerRepositoryInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $this->productListCustomerRelationReader = new ProductListCustomerRelationReader($this->productListCustomerRepositoryMock);
     }
