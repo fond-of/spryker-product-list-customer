@@ -120,16 +120,17 @@ class ProductListCustomerRelationWriter implements ProductListCustomerRelationWr
     }
 
     /**
-     * @param \Generated\Shared\Transfer\ProductListCustomerRelationTransfer $productListCustomerRelationTransferRelationTransfer
+     * @param \Generated\Shared\Transfer\ProductListCustomerRelationTransfer $productListCustomerRelationTransfer
      *
      * @return \Generated\Shared\Transfer\ProductListCustomerRelationTransfer
      */
     protected function executeProductListCustomerPostSavePlugins(
-        ProductListCustomerRelationTransfer $productListCustomerRelationTransferRelationTransfer
+        ProductListCustomerRelationTransfer $productListCustomerRelationTransfer
     ): ProductListCustomerRelationTransfer {
-
         foreach ($this->productListCustomerRelationsPostSavePlugins as $productListCustomerPostSavePlugin) {
-            $productListCustomerRelationTransfer = $productListCustomerPostSavePlugin->postSave($productListCustomerRelationTransferRelationTransfer);
+            $productListCustomerRelationTransfer = $productListCustomerPostSavePlugin->postSave(
+                $productListCustomerRelationTransfer
+            );
         }
 
         return $productListCustomerRelationTransfer;

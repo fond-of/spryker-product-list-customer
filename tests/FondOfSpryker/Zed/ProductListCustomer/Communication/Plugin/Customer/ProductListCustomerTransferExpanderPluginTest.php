@@ -29,11 +29,6 @@ class ProductListCustomerTransferExpanderPluginTest extends Unit
     protected $productListCustomerFacade;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\CustomerTransfer
-     */
-    protected $customerTransferMock;
-
-    /**
      * @return void
      */
     protected function _before(): void
