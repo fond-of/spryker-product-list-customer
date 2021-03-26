@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\ProductListExtension;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\ProductListCustomer\Business\ProductListCustomerFacade;
@@ -14,7 +14,7 @@ class ProductListTransferExpanderPluginTest extends Unit
     protected $productListTransferMock;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\CustomerProductListTransferExpanderPlugin
+     * @var \FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\ProductListExtension\CustomerProductListTransferExpanderPlugin
      */
     protected $productListTransferExpanderPlugin;
 

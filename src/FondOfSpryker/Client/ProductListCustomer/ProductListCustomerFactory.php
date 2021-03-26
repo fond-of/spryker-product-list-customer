@@ -10,7 +10,7 @@ use Spryker\Client\Kernel\AbstractFactory;
 class ProductListCustomerFactory extends AbstractFactory
 {
     /**
-     * @return \Spryker\Client\CompanyUser\Zed\CompanyUserStubInterface
+     * @return \FondOfSpryker\Client\ProductListCustomer\Zed\ProductListCustomerStubInterface
      */
     public function createZedProductListCustomerStub(): ProductListCustomerStubInterface
     {
@@ -18,8 +18,6 @@ class ProductListCustomerFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Client\ProductListCustomer\Dependency\Client\ProductListCustomerToZedRequestClientInterface
      */
     protected function getZedRequestClient(): ProductListCustomerToZedRequestClientInterface

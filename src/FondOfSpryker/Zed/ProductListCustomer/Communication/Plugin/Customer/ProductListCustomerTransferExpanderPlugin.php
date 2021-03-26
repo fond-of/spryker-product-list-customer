@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin;
+namespace FondOfSpryker\Zed\ProductListCustomer\Communication\Plugin\Customer;
 
 use Generated\Shared\Transfer\CustomerTransfer;
 use Spryker\Zed\Customer\Dependency\Plugin\CustomerTransferExpanderPluginInterface;

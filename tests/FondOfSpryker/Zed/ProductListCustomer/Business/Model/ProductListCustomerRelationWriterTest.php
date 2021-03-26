@@ -9,6 +9,7 @@ use Generated\Shared\Transfer\ProductListCustomerRelationTransfer;
 use Generated\Shared\Transfer\ProductListTransfer;
 use ReflectionClass;
 use ReflectionException;
+use function get_class;
 
 class ProductListCustomerRelationWriterTest extends Unit
 {
@@ -155,7 +156,7 @@ class ProductListCustomerRelationWriterTest extends Unit
             ->willReturn($this->productListCustomerRelationTransferMock);
 
         try {
-            $reflection = new ReflectionClass(\get_class($this->productListCustomerRelationWriter));
+            $reflection = new ReflectionClass(get_class($this->productListCustomerRelationWriter));
 
             $method = $reflection->getMethod('executeSaveProductListCustomerRelationTransaction');
             $method->setAccessible(true);
