@@ -10,7 +10,7 @@ use Generated\Shared\Transfer\ProductListTransfer;
 class CustomerExpanderTest extends Unit
 {
     /**
-     * @var \Generated\Shared\Transfer\ProductListTransfer[]|\PHPUnit\Framework\MockObject\MockObject[]
+     * @var array<\PHPUnit\Framework\MockObject\MockObject>|array<\Generated\Shared\Transfer\ProductListTransfer>
      */
     protected $productListsMock;
 

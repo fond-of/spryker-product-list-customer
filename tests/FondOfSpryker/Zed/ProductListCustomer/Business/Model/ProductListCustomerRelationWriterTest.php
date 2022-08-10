@@ -44,7 +44,7 @@ class ProductListCustomerRelationWriterTest extends Unit
     protected $currentProductListCustomerRelationTransferMock;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface[]|\PHPUnit\Framework\MockObject\MockObject[]
+     * @var array<\PHPUnit\Framework\MockObject\MockObject>|array<\FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface>
      */
     protected $productListCustomerPostSavePluginMocks;
 
@@ -84,7 +84,7 @@ class ProductListCustomerRelationWriterTest extends Unit
         $this->productListCustomerRelationWriter = new ProductListCustomerRelationWriter(
             $this->productListCustomerEntityManagerMock,
             $this->productListCustomerRelationReaderMock,
-            $this->productListCustomerPostSavePluginMocks
+            $this->productListCustomerPostSavePluginMocks,
         );
     }
 
@@ -125,13 +125,9 @@ class ProductListCustomerRelationWriterTest extends Unit
             ->with($this->productListCustomerRelationTransferMock)
             ->willReturn($this->currentProductListCustomerRelationTransferMock);
 
-        $this->currentProductListCustomerRelationTransferMock->expects($this->at(0))
+        $this->currentProductListCustomerRelationTransferMock->expects($this->atLeastOnce())
             ->method('getCustomerIds')
-            ->willReturn($relatedCustomerIds);
-
-        $this->currentProductListCustomerRelationTransferMock->expects($this->at(1))
-            ->method('getCustomerIds')
-            ->willReturn($customerIds);
+            ->willReturnOnConsecutiveCalls($relatedCustomerIds, $customerIds);
 
         $this->productListCustomerRelationTransferMock->expects($this->atLeastOnce())
             ->method('getCustomerIds')
