@@ -17,7 +17,7 @@ class ProductListCustomerRelationWriter implements ProductListCustomerRelationWr
     protected $productListCustomerEntityManager;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface[]
+     * @var array<\FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface>
      */
     protected $productListCustomerRelationsPostSavePlugins;
 
@@ -52,7 +52,7 @@ class ProductListCustomerRelationWriter implements ProductListCustomerRelationWr
         return $this->getTransactionHandler()->handleTransaction(
             function () use ($productListCustomerRelationTransfer) {
                 return $this->executeSaveProductListCustomerRelationTransaction($productListCustomerRelationTransfer);
-            }
+            },
         );
     }
 
@@ -77,7 +77,7 @@ class ProductListCustomerRelationWriter implements ProductListCustomerRelationWr
         $this->productListCustomerEntityManager->removeCustomerRelations($idProductList, $deleteCustomerIds);
 
         $productListCustomerRelationTransfer->setCustomerIds(
-            $this->getRelatedCustomerIds($productListCustomerRelationTransfer)
+            $this->getRelatedCustomerIds($productListCustomerRelationTransfer),
         );
         $productListCustomerRelationTransfer = $this->executeProductListCustomerPostSavePlugins($productListCustomerRelationTransfer);
 
@@ -87,7 +87,7 @@ class ProductListCustomerRelationWriter implements ProductListCustomerRelationWr
     /**
      * @param \Generated\Shared\Transfer\ProductListCustomerRelationTransfer $productListCustomerRelationTransfer
      *
-     * @return int[]
+     * @return array<int>
      */
     protected function getRelatedCustomerIds(
         ProductListCustomerRelationTransfer $productListCustomerRelationTransfer
@@ -101,7 +101,7 @@ class ProductListCustomerRelationWriter implements ProductListCustomerRelationWr
     /**
      * @param \Generated\Shared\Transfer\ProductListCustomerRelationTransfer $productListCustomerRelationTransfer
      *
-     * @return int[]
+     * @return array<int>
      */
     protected function getRequestedCustomerIds(
         ProductListCustomerRelationTransfer $productListCustomerRelationTransfer
@@ -129,7 +129,7 @@ class ProductListCustomerRelationWriter implements ProductListCustomerRelationWr
     ): ProductListCustomerRelationTransfer {
         foreach ($this->productListCustomerRelationsPostSavePlugins as $productListCustomerPostSavePlugin) {
             $productListCustomerRelationTransfer = $productListCustomerPostSavePlugin->postSave(
-                $productListCustomerRelationTransfer
+                $productListCustomerRelationTransfer,
             );
         }
 

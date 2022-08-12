@@ -32,7 +32,7 @@ class ProductListCustomerRelationReader implements ProductListCustomerRelationRe
         $productListCustomerRelationTransfer->requireIdProductList();
 
         $customerIds = $this->productListCustomerRepository->getRelatedCustomerIdsByIdProductList(
-            $productListCustomerRelationTransfer->getIdProductList()
+            $productListCustomerRelationTransfer->getIdProductList(),
         );
 
         $productListCustomerRelationTransfer->setCustomerIds($customerIds);

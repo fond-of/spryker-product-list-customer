@@ -32,7 +32,7 @@ class ProductListCustomerRelationPostSaverPlugin extends AbstractPlugin implemen
 
         $productListTransfer = $this->saveProductListCustomerRelation(
             $productListTransfer,
-            $productListCustomerRelationTransfer
+            $productListCustomerRelationTransfer,
         );
 
         return $productListTransfer;

@@ -37,7 +37,7 @@ class ProductListCustomerBusinessFactoryTest extends Unit
     protected $entityManagerMock;
 
     /**
-     * @var \FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface[]|\PHPUnit\Framework\MockObject\MockObject[]
+     * @var array<\PHPUnit\Framework\MockObject\MockObject>|array<\FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface>
      */
     protected $productListCustomerPostSavePluginMocks;
 

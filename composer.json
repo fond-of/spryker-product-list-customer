@@ -1,44 +1,52 @@
 {
-    "name": "fond-of-spryker/product-list-customer",
-    "description": "Extends spryker product list module.",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Daniel Rose",
-            "email": "daniel-rose@gmx.de"
-        },
-        {
-            "name": "Felix Pfister",
-            "email": "felix@pfister.de"
-        }
-    ],
-    "require": {
-        "php": ">=7.1",
-        "spryker/customer": "^7.0.0",
-        "fond-of-spryker/product-list": "dev-spryker_upgrade",
-        "fond-of-spryker/product-list-extension": "dev-master",
-        "fond-of-spryker/product-list-customer-extension": "dev-master"
+  "name": "fond-of-spryker/product-list-customer",
+  "description": "Extends spryker product list module.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Daniel Rose",
+      "email": "daniel-rose@gmx.de"
     },
-    "require-dev": {
-        "spryker/code-sniffer": "^0.12",
-        "codeception/codeception": "^2.4",
-        "mikey179/vfsstream": "^1.6",
-        "phpro/grumphp": "^0.14",
-        "sebastian/phpcpd": "^4.0",
-        "php-coveralls/php-coveralls": "^2.1",
-        "fond-of-codeception/spryker": "^1.0"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "autoload": {
-        "psr-4": {
-            "FondOfSpryker\\": "src/FondOfSpryker/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "FondOfSpryker\\": "tests/FondOfSpryker/",
-            "Generated\\": "src/Generated/"
-        }
+    {
+      "name": "Felix Pfister",
+      "email": "felix@pfister.de"
     }
+  ],
+  "scripts": {
+    "ci": "make ci",
+    "codeception": "make codeception",
+    "phpcs": "make phpcs",
+    "phpstan": "make phpstan"
+  },
+  "require": {
+    "php": ">=7.3",
+    "spryker/customer": "^7.0.0",
+    "fond-of-spryker/product-list": "dev-spryker_upgrade",
+    "fond-of-spryker/product-list-extension": "dev-master",
+    "fond-of-spryker/product-list-customer-extension": "dev-master"
+  },
+  "require-dev": {
+    "fond-of-codeception/spryker": "^1.0",
+    "spryker/code-sniffer": "*",
+    "spryker-sdk/phpstan-spryker": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "FondOfSpryker\\": "src/FondOfSpryker/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "FondOfSpryker\\": "tests/FondOfSpryker/",
+      "Generated\\": "src/Generated/",
+      "Orm\\Zed\\": "src/Orm/Zed/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
 }

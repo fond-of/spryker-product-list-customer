@@ -54,7 +54,7 @@ class ProductListCustomerBusinessFactory extends AbstractBusinessFactory
         return new ProductListCustomerRelationWriter(
             $this->getEntityManager(),
             $this->createProductListCustomerRelationReader(),
-            $this->getProductListCustomerRelationPostSavePlugins()
+            $this->getProductListCustomerRelationPostSavePlugins(),
         );
     }
 
@@ -67,7 +67,7 @@ class ProductListCustomerBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return \FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface[]
+     * @return array<\FondOfSpryker\Zed\ProductListCustomerExtension\Dependency\Plugin\ProductListCustomerPostSavePluginInterface>
      */
     public function getProductListCustomerRelationPostSavePlugins(): array
     {
