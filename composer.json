@@ -26,7 +26,7 @@
     "fond-of-spryker/product-list-customer-extension": "dev-master"
   },
   "require-dev": {
-    "fond-of-codeception/spryker": "^1.0",
+    "fond-of-codeception/spryker": "*",
     "spryker/code-sniffer": "*",
     "spryker-sdk/phpstan-spryker": "*"
   },

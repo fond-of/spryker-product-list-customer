@@ -46,14 +46,14 @@ class ProductListCustomerRepository extends AbstractRepository implements Produc
      */
     public function getRelatedCustomerIdsByIdProductList(int $idProductList): array
     {
-        /** @var \Orm\Zed\ProductList\Persistence\SpyProductListCustomerQuery $productListCustomerQuery */
-        $productListCustomerQuery = $this->getFactory()
+        /** @var \Propel\Runtime\Collection\ArrayCollection $collection */
+        $collection = $this->getFactory()
             ->createProductListCustomerQuery()
-            ->select(SpyProductListCustomerTableMap::COL_FK_CUSTOMER);
-
-        return $productListCustomerQuery
+            ->clear()
             ->filterByFkProductList($idProductList)
-            ->find()
-            ->toArray();
+            ->select(SpyProductListCustomerTableMap::COL_FK_CUSTOMER)
+            ->find();
+
+        return $collection->toArray();
     }
 }
